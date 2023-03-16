@@ -82,6 +82,22 @@ function reloadCard(){
     listCardS.forEach((value, key) => {
         totalPrice = totalPrice + value.price;
         count = count + value.quantity;
+
+        if(value != null){
+            let newDiv = document.createElement('li');
+            newDiv.innerHTML = `
+                <div>img src="image/${value.Image}"/</div>
+                <div>${value.name}</div>
+                <div>${value.price.toLocaleString()}</div>
+                <div>${value.quantity}</div>
+                <div>
+                    <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</butto>
+                    <div class="count">${value.quantity}</div>
+                    <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</butto>
+                </div>
+            `;
+            listCard.appendChild(newDiv);
+        }
     })
     total.innerText = totalPrice.toLocaleString();
     quantity.innerText = count;
